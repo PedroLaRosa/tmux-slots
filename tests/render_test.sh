@@ -78,6 +78,8 @@ check_defaults() {
   expect_option 'activity monitoring' monitor-activity 'on'
   expect_option 'visual bell' visual-bell 'on'
   expect_option 'bell action' bell-action 'other'
+  expect_option 'activity style' window-status-activity-style 'bold'
+  expect_option 'bell style' window-status-bell-style 'bold'
   expect_option 'window justify' status-justify 'left'
   expect_option 'window separator' window-status-separator ''
   expect_option 'session box' status-left \
@@ -140,6 +142,8 @@ check_phase_two_options() {
   expect_option 'activity monitoring off' monitor-activity 'off'
   expect_option 'visual bell off' visual-bell 'off'
   expect_option 'bell action off' bell-action 'none'
+  expect_option 'overridden activity style' window-status-activity-style 'underscore'
+  expect_option 'overridden bell style' window-status-bell-style 'underscore'
   expect_option 'unbolded session box with wider padding' status-left \
     '#[bg=colour49,fg=colour16]#{?client_prefix,#[bg=#FF915B],}  #S:#I.#P  #[bg=#403D41,fg=colour49]#{?client_prefix,#[fg=#FF915B],}'
   expect_option 'window flags and no padding' window-status-format \

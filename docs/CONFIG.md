@@ -74,6 +74,13 @@ recolours the box and its chevron, and leaves the text colour alone.
 | `@slot-window-colors` | `"bar snow"` | every other window |
 | `@slot-window-flags` | `false` | `true` appends `#F`, tmux's window flags (`*`, `-`, `Z`, …) |
 | `@slot-window-justify` | `left` | `status-justify`: `left`, `centre` or `right` |
+| `@slot-window-alert-style` | `bold` | how a window marks activity or a bell. Attributes only — `bold`, `underscore`, `default` for no marking |
+
+`@slot-window-alert-style` takes attributes rather than colours because
+`window-status-format` sets the background and foreground itself, so a colour in
+`window-status-activity-style` never reaches the screen. tmux's own default for those
+styles is `reverse`, which the format *cannot* override — that is what turns an
+inactive window white the moment it prints something.
 
 ## Slots
 

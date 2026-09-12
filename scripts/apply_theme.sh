@@ -35,6 +35,7 @@ main() {
   apply_activity_monitoring
   apply_visual_bell
   apply_bell_action
+  apply_alert_styles
   apply_window_justify
   apply_window_separator
   apply_status_left

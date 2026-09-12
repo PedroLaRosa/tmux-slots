@@ -43,6 +43,16 @@ apply_bell_action() {
   tmux set-option -g bell-action "$(bell_action)"
 }
 
+# ponytail: attributes only. A colour here is swallowed by window-status-format,
+# which sets bg and fg itself; only attributes survive. tmux's default is
+# 'reverse', which the format cannot clear -- that is the white tab on activity.
+apply_alert_styles() {
+  local alert
+  alert="$(tmux_option '@slot-window-alert-style' 'bold')"
+  tmux set-option -g window-status-activity-style "$alert"
+  tmux set-option -g window-status-bell-style "$alert"
+}
+
 bell_action() {
   if option_is_true '@slot-monitor-activity' 'true'; then
     printf 'other'
