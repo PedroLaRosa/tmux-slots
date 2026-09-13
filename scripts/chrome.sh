@@ -43,6 +43,27 @@ apply_bell_action() {
   tmux set-option -g bell-action "$(bell_action)"
 }
 
+# Keep every non-current window state on the inactive-window palette. tmux's
+# defaults for activity and bell use reverse video, and state styles are applied
+# after window-status-format, so the format cannot undo them. Silence has no
+# style of its own -- tmux routes window_silence_flag through the activity style.
+apply_alert_styles() {
+  local alert inactive_style
+  alert="$(tmux_option '@slot-window-alert-style' 'default')"
+  inactive_style="bg=$(color_pair_background '@slot-window-colors' 'bar snow'),fg=$(color_pair_foreground '@slot-window-colors' 'bar snow')"
+
+  if [ "$alert" != 'default' ]; then
+    alert="$inactive_style,$alert"
+  else
+    alert="$inactive_style"
+  fi
+
+  tmux set-option -g window-status-style "$inactive_style"
+  tmux set-option -g window-status-activity-style "$alert"
+  tmux set-option -g window-status-bell-style "$alert"
+  tmux set-option -g window-status-last-style "$inactive_style"
+}
+
 bell_action() {
   if option_is_true '@slot-monitor-activity' 'true'; then
     printf 'other'

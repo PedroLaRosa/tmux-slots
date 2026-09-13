@@ -74,6 +74,12 @@ recolours the box and its chevron, and leaves the text colour alone.
 | `@slot-window-colors` | `"bar snow"` | every other window |
 | `@slot-window-flags` | `false` | `true` appends `#F`, tmux's window flags (`*`, `-`, `Z`, …) |
 | `@slot-window-justify` | `left` | `status-justify`: `left`, `centre` or `right` |
+| `@slot-window-alert-style` | `default` | how a window marks activity or a bell. Attributes only — `default` for no marking, or `bold`, `underscore`, … |
+
+`@slot-window-alert-style` takes attributes rather than colours. The theme applies
+`@slot-window-colors` to every non-current window state (normal, activity, bell and
+last), preventing tmux's reverse-video defaults from turning any inactive tab white.
+Silence has no style of its own: tmux renders it with the activity style.
 
 ## Slots
 
