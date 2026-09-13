@@ -49,7 +49,7 @@ apply_bell_action() {
 # style of its own -- tmux routes window_silence_flag through the activity style.
 apply_alert_styles() {
   local alert inactive_style
-  alert="$(tmux_option '@slot-window-alert-style' 'bold')"
+  alert="$(tmux_option '@slot-window-alert-style' 'default')"
   inactive_style="bg=$(color_pair_background '@slot-window-colors' 'bar snow'),fg=$(color_pair_foreground '@slot-window-colors' 'bar snow')"
 
   if [ "$alert" != 'default' ]; then
