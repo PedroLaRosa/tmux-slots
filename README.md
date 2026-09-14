@@ -95,6 +95,50 @@ Colours are palette names (`orange`, `ink`, …) or raw tmux colours
 
 ## Recipes
 
+### A theme of your own
+
+Override the palette with `@slot-colors`, then point the slots at the names you
+defined. This is the whole of the `aimplified.dev` theme:
+
+```tmux
+set -g @plugin 'PedroLaRosa/tmux-slots'      # first
+
+set -g @slot-colors "
+bar='#181D25'
+bar_text='#f0f2f5'
+snow='#9ca6b5'
+ink='#14181f'
+mint='#b499ff'
+pink='#d580ff'
+orange='#f8c630'
+yellow='#ffd966'
+sand='#f5993d'
+indigo='#5e5eed'
+paper='#f0f2f5'
+slate='#2b303b'
+magenta='#b499ff'
+smoke='#303541'
+chalk='#f0f2f5'
+dim='#5a6472'
+teal='#24dbc9'
+"
+
+set -g @slot-list "ping cpu ram"
+set -g @slot-ping-format "#{ping}ms"                # no colours -> plain text
+set -g @slot-cpu-format "CPU #{cpu_percentage}"
+set -g @slot-cpu-colors "orange ink"
+set -g @slot-ram-format "#{sysstat_mem}"
+set -g @slot-ram-colors "yellow ink"
+
+set -g @plugin 'ayzenquwe/tmux-ping'         # after
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'samoshkin/tmux-plugin-sysstat'
+set -g @sysstat_mem_view_tmpl 'RAM #{mem.used}/#{mem.total}'
+```
+
+`teal` is not one of the sixteen default names — `@slot-colors` adds it, and any
+slot can now ask for `teal` the same way it asks for `orange`.
+
 ### The Claude Code status line as a slot
 
 ```tmux
