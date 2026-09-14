@@ -13,6 +13,10 @@ named ANSI colours, and `default` for "whatever the terminal uses".
 
 ## The default palette
 
+These are my own Monokai, derived from the palette of the Neovim Monokai theme, so
+that tmux matched the rest of my CLI tooling. Nothing else in tmux-slots depends on
+them — override any name you like.
+
 | Name | Value | Used by default for |
 |---|---|---|
 | `bar` | `#403D41` | status bar background, chevron gaps |
